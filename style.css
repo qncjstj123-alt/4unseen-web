@@ -1,0 +1,461 @@
+:root {
+    --main-bg-color: #000000;
+    --text-color: #FFFFFF;
+    --accent-color: #FF0000; /* 강조색 (로고 색상) */
+    --menu-font-size: 18px; /* 수정된 메뉴 폰트 크기 */
+}
+
+/* --- 기본 설정 --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* --- 로고 링크 스타일 초기화 --- */
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- 상단 내비게이션 --- */
+.navbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    box-sizing: border-box; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; 
+    z-index: 10;
+}
+
+.logo { 
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: var(--text-color);
+    flex-shrink: 0; 
+}
+
+.center-logo {
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 11; 
+}
+
+.brand-logo {
+    width: 80px; 
+    height: auto;
+    filter:
+        brightness(0) invert(1) 
+        drop-shadow(0 0 5px var(--accent-color)) 
+        drop-shadow(0 0 15px rgba(255, 0, 0, 0.6)) 
+        drop-shadow(0 0 30px rgba(255, 0, 0, 0.3)); 
+    opacity: 0;
+}
+
+.header-right {
+    display: flex;
+    gap: 20px; 
+    font-size: 13px; 
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+/* --- 메인 콘텐츠 및 배경 패턴 --- */
+.main-content {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.background-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+        repeating-linear-gradient(0deg, rgba(255, 0, 0, 0.05), transparent 1px, transparent 100px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- 왼쪽 사이드 메뉴 --- */
+.side-menu {
+    position: fixed; 
+    top: 30%;
+    left: 40px;
+    transform: translateY(-50%);
+    z-index: 5;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu li {
+    margin-bottom: 20px;
+    position: relative;
+    min-height: 22px; 
+}
+
+.side-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: var(--menu-font-size);
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+    display: block; 
+}
+
+.side-menu a:hover {
+    color: var(--accent-color);
+}
+
+.shop-title-wrapper a {
+    line-height: var(--menu-font-size); 
+}
+
+.submenu {
+    list-style: none;
+    padding: 10px 30px; 
+    position: absolute;
+    top: 40px; 
+    left: 0px; 
+    z-index: 6; 
+    background-color: #1a1a1a; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    max-height: 0; 
+    opacity: 0; 
+    overflow: hidden; 
+    visibility: hidden; 
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease-out, visibility 0.4s;
+    width: 250px; 
+}
+
+.submenu li a {
+    font-size: 10px; 
+    font-weight: normal; 
+    letter-spacing: 1px;
+    padding: 10px 10px; 
+    display: block; 
+}
+
+.has-submenu:hover > .submenu {
+    max-height: 300px; 
+    opacity: 1;
+    visibility: visible; 
+}
+
+/* --- 중앙 영상 오버레이 --- */
+.video-overlay {
+    position: relative;
+    z-index: 2;
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+}
+
+.video-overlay video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* --- 인트로 애니메이션 --- */
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/zin.png'); 
+    background-size: cover; 
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.4); 
+    background-blend-mode: multiply;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#head-image {
+    max-width: 400px;
+    height: auto;
+}
+
+/* --- 🌟 [수정] 갤러리 섹션 및 크기 통일 설정 🌟 --- */
+.gallery-section {
+    width: 100%;
+    padding: 100px 40px;
+    box-sizing: border-box;
+    background-color: var(--main-bg-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    position: relative;
+    width: 100%;
+    /* 1. 모든 아이템 박스의 비율을 1:1 정사각형으로 고정 */
+    aspect-ratio: 1 / 1; 
+    background-color: rgba(255, 255, 255, 0.05); /* 이미지가 작을 때 보일 배경색 (선택사항) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    /* 2. 이미지가 잘리지 않게 함 (contain) */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    display: block;
+    transition: transform 0.4s ease-out;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.0);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.4s ease, opacity 0.4s ease;
+}
+
+.season-text {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center; 
+    opacity: 0;
+    transform: translateY(-10px); 
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s; 
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item:hover .overlay {
+    background-color: rgba(255, 255, 255, 0.3); 
+    opacity: 1;
+}
+
+.gallery-item:hover .season-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 푸터 스타일링 --- */
+.site-footer {
+    width: 100%;
+    padding: 20px 0; 
+    background-color: var(--main-bg-color); 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start; 
+    padding: 0 40px; 
+    max-width: 1400px; 
+    margin: 0 auto;
+}
+
+.footer-left p,
+.footer-right p {
+    margin: 0; 
+    font-size: 8px;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    line-height: 1.6; 
+}
+
+.footer-right {
+    text-align: right; 
+}
+
+/* --- BRAND STORY 및 기타 (기존 유지) --- */
+.brand-story-page .main-content .video-overlay {
+    display: none;
+}
+
+.page-content-wrapper {
+    position: relative;
+    z-index: 12;
+    width: 600px; 
+    max-width: 80%; 
+    margin-top: 100px; 
+    margin-bottom: 50px; 
+}
+
+.page-title {
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.brand-story-image-container {
+    text-align: center;
+    transform: translateY(-250px); 
+}
+
+.story-image {
+    max-width: 100%; 
+    height: auto;
+    opacity: 0.3;
+}
+
+.brand-story-text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.brand-story-text-overlay p {
+    font-size: 13px; 
+    line-height: 2.1;
+    color: var(--text-color);
+    text-align: center; 
+    transform: translateY(-120px); 
+    max-width: 600px;
+}
+
+.active-sub-menu {
+    color: var(--accent-color) !important;
+}
+
+.page-bottom-image-container {
+    text-align: center; 
+    margin-top: 50px; 
+    margin-bottom: 100px; 
+}
+
+.page-bottom-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 상세 페이지용 스타일 */
+.sub-page {
+    background-color: var(--main-bg-color);
+}
+
+.content-detail {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+}
+
+/* 영상 크기 조절 */
+.detail-video-container {
+    width: 100%;
+    max-width: 1000px; /* 영상 너비 조절 */
+    margin-bottom: 50px;
+}
+
+.detail-video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 사진 크기 조절 */
+.detail-image-container {
+    width: 100%;
+    max-width: 1000px; /* 사진 너비 조절 */
+    margin-bottom: 100px;
+}
+
+.detail-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* 반응형 모바일 대응 */
+@media (max-width: 768px) {
+    .detail-video-container, .detail-image-container {
+        padding: 0 20px;
+    }
+}
+
+/* P409 상세 페이지 전용 레이아웃 조정 */
+.p409-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent !important; /* 배경 투명하게 */
+    box-shadow: none !important;
+}
+
+.detail-video-container {
+    width: 100%;
+    max-width: 800px; /* 영상 사이즈 조절 */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.2));
+}
+
+.detail-video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.detail-image-container {
+    width: 100%;
+    max-width: 800px; /* 사진 사이즈 조절 */
+    margin-bottom: 100px;
+}
+
+.p409-main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
